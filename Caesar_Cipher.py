@@ -4,8 +4,8 @@ def encrypt(original_text, shift_amount):
     encrypted_text = ""
 
     for letter in original_text:
-        if letter == " ":
-            encrypted_text += " "
+        if not letter.isalpha():
+            encrypted_text += letter
             continue
         position = alphabet.index(letter)
         if position + shift_amount > 25:
@@ -18,8 +18,8 @@ def encrypt(original_text, shift_amount):
 def decrypt(original_text, shift_amount):
     decrypted_text = ""
     for letter in original_text:
-        if letter == " ":
-            decrypted_text += " "
+        if not letter.isalpha():
+            decrypted_text += letter
             continue
         position = alphabet.index(letter)
         if position - shift_amount < 0:
@@ -31,10 +31,10 @@ def decrypt(original_text, shift_amount):
     print(decrypted_text)
 
 
-def caesar(original_text, shift_amount, direct):
-    if direct == "encode":
+def caesar(original_text, shift_amount, encode_or_decode):
+    if encode_or_decode == "encode":
         encrypt(original_text, shift_amount)
-    elif direct == "decode":
+    elif encode_or_decode == "decode":
         decrypt(original_text, shift_amount)
 
 
@@ -46,12 +46,5 @@ if direction != 'encode' and direction != 'decode':
 else:
     text = input("Type the Caesar ciphered message:\n").lower()
     shift = int(input("Type the shift number:\n"))
-    caesar(original_text = text, shift_amount = shift, direct= direction)
+    caesar(original_text = text, shift_amount = shift, encode_or_decode= direction)
 
-#TODO-1: Create a function called 'encrypt' that takes the originial_text and shift_amount as 2 inputs
-
-#TODO-2: Inside the 'encrypt' function, shift each letter of the original_text forwards in the alphabet by the shift_amount and print the encrypted text
-
-#TODO-4: What happens if you tro to shift z forwards by 9? Can you fix the code?
-
-#TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a message
