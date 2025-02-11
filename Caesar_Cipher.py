@@ -38,13 +38,18 @@ def caesar(original_text, shift_amount, encode_or_decode):
         decrypt(original_text, shift_amount)
 
 
-
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-if direction != 'encode' and direction != 'decode':
-    print("Sorry, we don't understand.")
-    exit()
-else:
-    text = input("Type the Caesar ciphered message:\n").lower()
-    shift = int(input("Type the shift number:\n"))
-    caesar(original_text = text, shift_amount = shift, encode_or_decode= direction)
+should_continue = True
+while should_continue:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    if direction != 'encode' and direction != 'decode':
+        print("Sorry, we don't understand.")
+        exit()
+    else:
+        text = input("Type the Caesar ciphered message:\n").lower()
+        shift = int(input("Type the shift number:\n"))
+        caesar(original_text = text, shift_amount = shift, encode_or_decode= direction)
+    answer = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n").lower()
+    if answer == 'no' and answer != 'yes':
+        should_continue = False
+        print("Goodbye!")
 
